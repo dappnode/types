@@ -2,6 +2,7 @@ import { FileFormat } from "../types/index.js";
 
 export const containerNamePrefix = "DAppNodePackage-";
 export const containerCoreNamePrefix = "DAppNodeCore-";
+export const containerToolNamePrefix = "DAppNodeTool-";
 
 /**
  * Plain text file with should contain the IPFS hash of the release
