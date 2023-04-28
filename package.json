@@ -1,0 +1,36 @@
+{
+  "name": "@dappnode/types",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "A shared TypeScript types, utility functions, parameters, and JSON schemas package for DAppNode projects.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dappnode/types.git"
+  },
+  "keywords": [
+    "types",
+    "dappnode",
+    "ethereum"
+  ],
+  "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
+  "contributors": [
+    "Pablo Mendez <mendez4a@gmail.com> (https://github.com/pablomendezroyo)"
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/dappnode/DAppNodeSDK/issues"
+  },
+  "files": [
+    "dist",
+    "src/schemas"
+  ],
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
