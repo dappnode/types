@@ -8,7 +8,7 @@ import { FileFormat } from "../types/index.js";
  *
  * /ipfs/QmNqDvqAyy3pN3PvymB6chM7S1FgYyive8LosVKUuaDdfd
  */
-export const contentHashFile = "content-hash";
+export const contentHashFile = "content-hash" as const;
 
 export const releaseFiles = {
   manifest: {
@@ -95,7 +95,7 @@ export const releaseFiles = {
     required: false as const,
     multiple: true as const,
   },
-};
+} as const;
 
 export const releaseFilesToDownload = {
   manifest: releaseFiles.manifest,
@@ -105,7 +105,7 @@ export const releaseFilesToDownload = {
   gettingStarted: releaseFiles.gettingStarted,
   prometheusTargets: releaseFiles.prometheusTargets,
   grafanaDashboards: releaseFiles.grafanaDashboards,
-};
+} as const;
 
 export const releaseFilesDefaultNames: {
   [P in keyof typeof releaseFiles]: string;
@@ -122,4 +122,4 @@ export const releaseFilesDefaultNames: {
   gettingStarted: "getting-started.md",
   grafanaDashboards: "grafana-dashboard.json",
   prometheusTargets: "prometheus-targets.json",
-};
+} as const;

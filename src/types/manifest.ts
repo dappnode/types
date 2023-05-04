@@ -141,20 +141,14 @@ export type ChainDriverSpecs = {
   portNumber?: number;
 };
 
-export type ChainDriverType =
-  | "bitcoin"
-  | "ethereum"
-  | "ethereum-beacon-chain"
-  | "ethereum2-beacon-chain-prysm"
-  | "monero";
-
-export const chainDriversTypes: ChainDriverType[] = [
+export type ChainDriverType = (typeof chainDriversTypes)[number];
+export const chainDriversTypes = [
   "bitcoin",
   "ethereum",
   "ethereum-beacon-chain",
   "ethereum2-beacon-chain-prysm",
   "monero",
-];
+] as const;
 
 // HTTPS ports
 interface ExposableServiceManifestInfo {
@@ -166,21 +160,11 @@ interface ExposableServiceManifestInfo {
   exposeByDefault?: boolean;
 }
 
-// Arch
-
-export type Architecture = "linux/amd64" | "linux/arm64";
-export const architectures: Architecture[] = ["linux/amd64", "linux/arm64"];
-export const defaultArch = "linux/amd64";
-
-// Manifest format
-
 export enum ManifestFormat {
   json = "json",
   yml = "yml",
   yaml = "yaml",
 }
-
-// Manifest paths
 
 export interface ManifestPaths {
   /** './folder', [optional] directory to load the manifest from */
@@ -188,3 +172,9 @@ export interface ManifestPaths {
   /** 'manifest-admin.json', [optional] name of the manifest file */
   manifestFileName?: string;
 }
+
+// Arch
+
+export type Architecture = (typeof architectures)[number];
+export const architectures = ["linux/amd64", "linux/arm64"] as const;
+export const defaultArch = "linux/amd64" as const;
