@@ -2,6 +2,7 @@ import path from "path";
 
 export default {
   entry: "./src/index.ts",
+  mode: "production",
   output: {
     path: path.resolve(process.cwd(), "dist"),
     filename: "index.js",
@@ -10,7 +11,12 @@ export default {
     },
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".tsx", ".js"],
+    extensionAlias: {
+      ".js": [".ts", ".js"],
+      ".cjs": [".cts", ".cjs"],
+      ".mjs": [".mts", ".mjs"],
+    },
   },
   module: {
     rules: [
