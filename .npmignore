@@ -1,0 +1,8 @@
+node_modules
+src
+types
+*.log
+*.lock
+tsconfig.json
+.gitignore
+.npmignore
