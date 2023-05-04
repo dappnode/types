@@ -1,24 +1,26 @@
 # @dappnode/types
 
-A shared TypeScript types, utility functions, parameters, and JSON schemas package for DAppNode projects.
+This package provides a shared collection of TypeScript types, utility functions, parameters, and JSON schemas for DAppNode projects.
 
 ## Installation
 
-To install the package as a dependency in your project, run:
+To add this package as a dependency in your project, use the following command:
 
-```npm install @dappnode/types
+```bash
+npm install @dappnode/types
 
 ```
 
 ## Usage
 
-To use the shared types, utility functions, parameters, and JSON schemas in your project, simply import them:
+To utilize the shared types, utility functions, parameters, and JSON schemas in your project, simply import them as needed:
 
 ```typescript
 import { MyType, myUtilityFunction, myParameter } from "@dappnode/types";
 ```
 
-## Structure
+## Structure
+
 This package is organized as follows:
 
 - `src/types`: Contains the shared TypeScript types.
@@ -31,14 +33,16 @@ This package is organized as follows:
 1. Fork the repository and clone it to your local machine.
 2. Navigate to the project directory and install the dependencies:
 
-```npm install
+```bash
+npm install
 
 ```
 
 3. Make your changes or additions to the code.
 4. Build the project:
 
-```npm run build
+```bash
+npm run build
 
 ```
 
