@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Bump version (patch, minor, major)"
+        required: true
+
+jobs:
+  test_and_build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Bundle with webpack
+        run: npm run build:webpack
+
+      - name: Bump version and create release
+        if: github.event_name == 'workflow_dispatch'
+        id: create_release
+        run: |
+          npm version ${{ github.event.inputs.bump }} --no-git-tag-version
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -am "Release ${{ github.event.inputs.bump }}"
+          TAG_NAME="v$(cat package.json | jq -r .version)"
+          git tag $TAG_NAME
+          echo "::set-output name=tag::$TAG_NAME"
+          echo "::set-output name=release_name::Release $TAG_NAME"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub release
+        if: github.event_name == 'workflow_dispatch'
+        id: gh_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.create_release.outputs.tag }}
+          release_name: ${{ steps.create_release.outputs.release_name }}
+
+      - name: Publish to npm registry
+        if: github.event_name == 'workflow_dispatch'
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push commit and tag
+        if: ${{ success() }} && github.event_name == 'workflow_dispatch'
+        run: |
+          BRANCH_NAME=${{ github.ref }}
+          BRANCH_NAME=${BRANCH_NAME/refs\/heads\//}
+          git push origin HEAD:$BRANCH_NAME
+          git push origin ${{ steps.create_release.outputs.tag }}
