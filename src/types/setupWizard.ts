@@ -49,6 +49,7 @@ export interface SetupUiJson {
   };
   // SetupUiJson is a legacy non-critical type that needs to exist and be
   // different from any so await Promise.all([ ... ]) typing works
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   "ui:order"?: string[];
 }
