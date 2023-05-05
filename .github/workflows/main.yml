@@ -42,7 +42,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         id: create_release
         run: |
-          NEW_VERSION=0.1.0
+          NEW_VERSION=$(npm version ${{ github.event.inputs.bump }})
           git push --follow-tags
           TAG_NAME="v$NEW_VERSION"
           echo "::set-output name=tag::$TAG_NAME"
