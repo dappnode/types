@@ -10,94 +10,94 @@ import { FileFormat } from "../types/index.js";
  */
 export const contentHashFile = "content-hash" as const;
 
-export const releaseFiles = {
-  manifest: {
+export const releaseFiles = Object.freeze({
+  manifest: Object.freeze({
     regex: /dappnode_package.*\.(json|yaml|yml)$/,
     format: FileFormat.YAML,
     maxSize: 100e3, // Limit size to ~100KB
     required: true as const,
     multiple: false as const,
-  },
-  compose: {
+  }),
+  compose: Object.freeze({
     regex: /compose.*\.yml$/,
     format: FileFormat.YAML,
     maxSize: 10e3, // Limit size to ~10KB
     required: true as const,
     multiple: false as const,
-  },
-  signature: {
+  }),
+  signature: Object.freeze({
     regex: /^signature\.json$/,
     format: FileFormat.JSON,
     maxSize: 10e3, // Limit size to ~10KB
     required: false as const,
     multiple: false as const,
-  },
-  avatar: {
+  }),
+  avatar: Object.freeze({
     regex: /avatar.*\.png$/,
     format: null,
     maxSize: 100e3,
     required: true as const,
     multiple: false as const,
-  },
-  setupWizard: {
+  }),
+  setupWizard: Object.freeze({
     regex: /setup-wizard\..*(json|yaml|yml)$/,
     format: FileFormat.YAML,
     maxSize: 100e3,
     required: false as const,
     multiple: false as const,
-  },
-  setupSchema: {
+  }),
+  setupSchema: Object.freeze({
     regex: /setup\..*\.json$/,
     format: FileFormat.JSON,
     maxSize: 10e3,
     required: false as const,
     multiple: false as const,
-  },
-  setupTarget: {
+  }),
+  setupTarget: Object.freeze({
     regex: /setup-target\..*json$/,
     format: FileFormat.JSON,
     maxSize: 10e3,
     required: false as const,
     multiple: false as const,
-  },
-  setupUiJson: {
+  }),
+  setupUiJson: Object.freeze({
     regex: /setup-ui\..*json$/,
     format: FileFormat.JSON,
     maxSize: 10e3,
     required: false as const,
     multiple: false as const,
-  },
-  disclaimer: {
+  }),
+  disclaimer: Object.freeze({
     regex: /disclaimer\.md$/i,
     format: FileFormat.TEXT,
     maxSize: 100e3,
     required: false as const,
     multiple: false as const,
-  },
-  gettingStarted: {
+  }),
+  gettingStarted: Object.freeze({
     regex: /getting.*started\.md$/i,
     format: FileFormat.TEXT,
     maxSize: 100e3,
     required: false as const,
     multiple: false as const,
-  },
-  prometheusTargets: {
+  }),
+  prometheusTargets: Object.freeze({
     regex: /.*prometheus-targets.(json|yaml|yml)$/,
     format: FileFormat.YAML,
     maxSize: 10e3,
     required: false as const,
     multiple: false as const,
-  },
-  grafanaDashboards: {
+  }),
+  grafanaDashboards: Object.freeze({
     regex: /.*grafana-dashboard.json$/,
     format: FileFormat.JSON,
     maxSize: 10e6, // ~ 10MB
     required: false as const,
     multiple: true as const,
-  },
-} as const;
+  }),
+} as const);
 
-export const releaseFilesToDownload = {
+export const releaseFilesToDownload = Object.freeze({
   manifest: releaseFiles.manifest,
   compose: releaseFiles.compose,
   signature: releaseFiles.signature,
@@ -105,11 +105,11 @@ export const releaseFilesToDownload = {
   gettingStarted: releaseFiles.gettingStarted,
   prometheusTargets: releaseFiles.prometheusTargets,
   grafanaDashboards: releaseFiles.grafanaDashboards,
-} as const;
+} as const);
 
 export const releaseFilesDefaultNames: {
   [P in keyof typeof releaseFiles]: string;
-} = {
+} = Object.freeze({
   manifest: "dappnode_package.json",
   compose: "docker-compose.yml",
   avatar: "avatar.png",
@@ -122,4 +122,4 @@ export const releaseFilesDefaultNames: {
   gettingStarted: "getting-started.md",
   grafanaDashboards: "grafana-dashboard.json",
   prometheusTargets: "prometheus-targets.json",
-} as const;
+} as const);

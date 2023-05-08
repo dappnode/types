@@ -1,3 +1,4 @@
+import { architectures, chainDriversTypes } from "../params/index.js";
 import {
   SetupSchema,
   SetupTarget,
@@ -142,13 +143,6 @@ export type ChainDriverSpecs = {
 };
 
 export type ChainDriverType = (typeof chainDriversTypes)[number];
-export const chainDriversTypes = [
-  "bitcoin",
-  "ethereum",
-  "ethereum-beacon-chain",
-  "ethereum2-beacon-chain-prysm",
-  "monero",
-] as const;
 
 // HTTPS ports
 interface ExposableServiceManifestInfo {
@@ -176,5 +170,3 @@ export interface ManifestPaths {
 // Arch
 
 export type Architecture = (typeof architectures)[number];
-export const architectures = ["linux/amd64", "linux/arm64"] as const;
-export const defaultArch = "linux/amd64" as const;
