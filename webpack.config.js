@@ -27,6 +27,11 @@ export default {
   module: {
     rules: [
       {
+        test: /\.json$/,
+        loader: "json-loader",
+        type: "javascript/auto",
+      },
+      {
         test: /\.ts$/,
         use: {
           loader: "ts-loader",
