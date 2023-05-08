@@ -1,6 +1,18 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
+const currentModulePath = fileURLToPath(import.meta.url);
+
 export default {
   entry: "./src/index.ts",
   mode: "production",
+  output: {
+    path: path.resolve(path.dirname(currentModulePath), "dist"),
+    filename: "index.js",
+    library: {
+      type: "module",
+    },
+  },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
     extensionAlias: {
@@ -10,10 +22,7 @@ export default {
     },
   },
   experiments: {
-    outputModule: true,
-  },
-  output: {
-    module: true,
+    outputModule: true, // Enable the output module experiment
   },
   module: {
     rules: [
