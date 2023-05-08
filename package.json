@@ -6,8 +6,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "build:webpack": "webpack --config webpack.config.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "build:webpack": "npm run clean && webpack --config webpack.config.js",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "echo \"Error: no test specified\" "
@@ -49,6 +50,7 @@
     "eslint-plugin-import": "^2.27.5",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
     "ts-loader": "^9.4.2",
     "typescript": "^5.0.4",
     "webpack": "^5.82.0",
