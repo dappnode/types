@@ -33,18 +33,18 @@ This package is organized as follows:
 1. Fork the repository and clone it to your local machine.
 2. Navigate to the project directory and install the dependencies:
 
-```bash
-npm install
+   ```bash
+   npm install
 
-```
+   ```
 
 3. Make your changes or additions to the code.
 4. Build the project:
 
-```bash
-npm run build
+   ```bash
+   npm run build
 
-```
+   ```
 
 5. Commit and push your changes to your fork.
 6. Open a pull request to the main repository.
