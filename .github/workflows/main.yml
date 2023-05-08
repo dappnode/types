@@ -43,6 +43,8 @@ jobs:
         id: create_release
         run: |
           NEW_VERSION=$(npm version ${{ github.event.inputs.bump }})
+          git add .
+          git commit -m "Bump version to $NEW_VERSION"
           git push --follow-tags
           TAG_NAME="v$NEW_VERSION"
           echo "::set-output name=tag::$TAG_NAME"
