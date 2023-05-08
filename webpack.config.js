@@ -1,13 +1,16 @@
 import path from "path";
+import { fileURLToPath } from "url";
+
+const currentModulePath = fileURLToPath(import.meta.url);
 
 export default {
   entry: "./src/index.ts",
   mode: "production",
   output: {
-    path: path.resolve(process.cwd(), "dist"),
+    path: path.resolve(path.dirname(currentModulePath), "dist"),
     filename: "index.js",
     library: {
-      type: "commonjs2",
+      type: "module",
     },
   },
   resolve: {
@@ -17,6 +20,9 @@ export default {
       ".cjs": [".cts", ".cjs"],
       ".mjs": [".mts", ".mjs"],
     },
+  },
+  experiments: {
+    outputModule: true, // Enable the output module experiment
   },
   module: {
     rules: [
@@ -32,5 +38,4 @@ export default {
       },
     ],
   },
-  externals: /^[a-z\-0-9]+$/, // Exclude node_modules from the bundle
 };
