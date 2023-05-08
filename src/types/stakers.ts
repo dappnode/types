@@ -13,9 +13,10 @@ import {
   signerGnosis,
   signerMainnet,
   signerPrater,
+  networks,
 } from "../params/index.js";
 
-export type Network = "mainnet" | "prater" | "gnosis";
+export type Network = (typeof networks)[number];
 
 // MAINNET
 export type ConsensusClientMainnet = (typeof consensusClientsMainnet)[number];
