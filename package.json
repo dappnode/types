@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "publish-patch": "npm run test && npm run build:webpack && npm version patch && npm publish --access public && git push --follow-tags",
+    "tag-and-publish": "npm version patch && git push --follow-tags",
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
     "build:webpack": "npm run clean && webpack --config webpack.config.js",
