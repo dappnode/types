@@ -47,6 +47,12 @@ jobs:
         if: env.SHOULD_CONTINUE == 'true'
         run: npm run build:webpack
 
+      - name: Get the tag name
+        if: env.SHOULD_CONTINUE == 'true'
+        id: get_tag_name
+        run: |
+          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
       - name: Create GitHub release
         if: env.SHOULD_CONTINUE == 'true'
         id: gh_release
@@ -54,8 +60,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ env.TAG_NAME }}
+          release_name: Release ${{ env.TAG_NAME }}
 
       - name: Publish to npm registry
         if: env.SHOULD_CONTINUE == 'true'
