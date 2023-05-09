@@ -26,22 +26,29 @@ jobs:
       - name: Compare versions
         run: |
           current_version=$(node -p "require('./package.json').version")
-          published_version=$(npm view @dappnode/types version)
+          published_version=$(npm view @dappnode/dappnodesdk version)
           if [ "$(printf '%s\n' "$published_version" "$current_version" | sort -V | head -n1)" != "$published_version" ]; then
             echo "No release required"
-            exit 0
+            echo "SHOULD_CONTINUE=false" >> $GITHUB_ENV
+          else
+            echo "SHOULD_CONTINUE=true" >> $GITHUB_ENV
           fi
+        shell: bash
 
       - name: Lint
+        if: env.SHOULD_CONTINUE == 'true'
         run: npm run lint
 
       - name: Run tests
+        if: env.SHOULD_CONTINUE == 'true'
         run: npm run test
 
       - name: Build webpack # release with webpack bundle
+        if: env.SHOULD_CONTINUE == 'true'
         run: npm run build:webpack
 
       - name: Create GitHub release
+        if: env.SHOULD_CONTINUE == 'true'
         id: gh_release
         uses: actions/create-release@v1
         env:
@@ -51,6 +58,7 @@ jobs:
           release_name: Release ${{ github.ref }}
 
       - name: Publish to npm registry
+        if: env.SHOULD_CONTINUE == 'true'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
