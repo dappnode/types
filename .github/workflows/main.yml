@@ -7,11 +7,6 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      bump:
-        description: "Bump version (patch, minor, major)"
-        required: true
 
 jobs:
   test_and_build:
