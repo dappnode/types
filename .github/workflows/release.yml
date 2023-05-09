@@ -51,7 +51,7 @@ jobs:
         if: env.SHOULD_CONTINUE == 'true'
         id: get_tag_name
         run: |
-          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          echo "TAG_NAME=$(echo ${GITHUB_REF#refs/tags/} | sed 's/\// /' | awk '{print $1}')" >> $GITHUB_ENV
 
       - name: Create GitHub release
         if: env.SHOULD_CONTINUE == 'true'
