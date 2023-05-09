@@ -60,6 +60,6 @@ jobs:
 
       - name: Publish to npm registry
         if: env.SHOULD_CONTINUE == 'true'
-        run: npm publish --access public
+        run: npm publish --access public --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
