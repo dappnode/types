@@ -48,6 +48,7 @@ jobs:
         run: npm run build:webpack
 
       - name: Get tag name
+        if: env.SHOULD_CONTINUE == 'true'
         run: echo "TAG_NAME=v$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Create GitHub release
