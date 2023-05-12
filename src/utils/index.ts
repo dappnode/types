@@ -2,7 +2,7 @@ import {
   containerCoreNamePrefix,
   containerNamePrefix,
 } from "../params/index.js";
-import { Architecture } from "../types/index.js";
+import { Architecture, Compose } from "../types/index.js";
 
 /**
  * Returns the arch tag for the given architecture
@@ -55,21 +55,37 @@ export const getContainerDomain = ({
 };
 
 /**
+ * Returns whether the given compose file is a mono-service compose file or not
+ * @param compose Compose file
+ * @returns True if the compose file is a mono-service compose file, false otherwise
+ */
+export function getIsMonoService(compose: Compose): boolean {
+  return Object.keys(compose.services).length === 1;
+}
+
+/**
  * Returns the image tag for the given DAppNode package name, service name and version
  * @param dnpName DAppNode package name
  * @param serviceName Service name
  * @param version Container version
+ * @param isMonoService Flag indicating whether the compose file is a mono-service compose file or not
  * @returns Image tag in the format <container-domain>:<version>, where container-domain is the domain obtained with getContainerDomain
  */
 export const getImageTag = ({
   dnpName,
   serviceName,
   version,
+  isMonoService,
 }: {
   dnpName: string;
   serviceName: string;
   version: string;
-}): string => [getContainerDomain({ dnpName, serviceName }), version].join(":");
+  isMonoService: boolean;
+}): string => {
+  if (isMonoService || !serviceName || serviceName === dnpName)
+    return [dnpName, version].join(":");
+  else return [[serviceName, dnpName].join("."), version].join(":");
+};
 
 /**
  * Returns the container name for the given DAppNode package name, service name and isCore flag
