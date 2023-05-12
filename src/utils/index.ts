@@ -70,6 +70,9 @@ export function getIsMonoService(compose: Compose): boolean {
  * @param version Container version
  * @param isMonoService Flag indicating whether the compose file is a mono-service compose file or not
  * @returns Image tag in the format <container-domain>:<version>, where container-domain is the domain obtained with getContainerDomain
+ * @throws Error if version is not provided
+ * @throws Error if DAppNode package name is not provided
+ * @throws Error if service name is not provided
  */
 export const getImageTag = ({
   dnpName,
@@ -82,7 +85,10 @@ export const getImageTag = ({
   version: string;
   isMonoService: boolean;
 }): string => {
-  if (isMonoService || !serviceName || serviceName === dnpName)
+  if (!version) throw new Error("Version is required");
+  if (!dnpName) throw new Error("DAppNode package name is required");
+  if (!serviceName) throw new Error("Service name is required");
+  if (isMonoService || serviceName === dnpName)
     return [dnpName, version].join(":");
   else return [[serviceName, dnpName].join("."), version].join(":");
 };
