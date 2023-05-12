@@ -12,7 +12,7 @@
     "build:webpack": "npm run clean && webpack --config webpack.config.js",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "test": "echo \"Error: no test specified\" "
+    "test": "mocha --config .mocharc.yml test/**/*.test.ts"
   },
   "exports": {
     ".": {
@@ -53,6 +53,7 @@
     "prettier": "^2.8.8",
     "rimraf": "^5.0.0",
     "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
     "webpack": "^5.82.0",
     "webpack-cli": "^5.0.2",
