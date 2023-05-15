@@ -8,7 +8,6 @@ describe("Utils > getImageTag", function () {
         dnpName: "test",
         serviceName: "test",
         version: "",
-        isMonoService: true,
       })
     ).to.throw("Version is required");
   });
@@ -19,7 +18,6 @@ describe("Utils > getImageTag", function () {
         dnpName: "",
         serviceName: "test",
         version: "1.0.0",
-        isMonoService: true,
       })
     ).to.throw("DAppNode package name is required");
   });
@@ -30,27 +28,15 @@ describe("Utils > getImageTag", function () {
         dnpName: "test",
         serviceName: "",
         version: "1.0.0",
-        isMonoService: true,
       })
     ).to.throw("Service name is required");
   });
 
-  it("should return the correct image tag for mono-service", () => {
-    const result = getImageTag({
-      dnpName: "test",
-      serviceName: "test",
-      version: "1.0.0",
-      isMonoService: true,
-    });
-    expect(result).to.equal("test:1.0.0");
-  });
-
-  it("should return the correct image tag for multi-service", () => {
+  it("should return the correct image tag for serviceName different than dnpName", () => {
     const result = getImageTag({
       dnpName: "test",
       serviceName: "service",
       version: "1.0.0",
-      isMonoService: false,
     });
     expect(result).to.equal("service.test:1.0.0");
   });
@@ -60,7 +46,6 @@ describe("Utils > getImageTag", function () {
       dnpName: "test",
       serviceName: "test",
       version: "1.0.0",
-      isMonoService: false,
     });
     expect(result).to.equal("test:1.0.0");
   });
