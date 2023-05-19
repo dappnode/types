@@ -85,6 +85,6 @@ export const stakerPkgs = Object.freeze([
   ...mevBoostPrater,
   ...executionClientsGnosis,
   ...consensusClientsGnosis,
-  //...signerGnosis,
+  ...signerGnosis,
   //...mevBoostGnosis,
 ] as const);
