@@ -66,7 +66,7 @@ export const executionClientsGnosis = Object.freeze([
 ] as const);
 export type SignerGnosis = (typeof signerGnosis)[number];
 export const signerGnosis = Object.freeze([
-  "web3signer-Gnosis.dnp.dappnode.eth",
+  "web3signer-gnosis.dnp.dappnode.eth",
 ] as const);
 /**export type MevBoostGnosis = (typeof mevBoostGnosis)[number];
 export const mevBoostGnosis = Object.freeze([
