@@ -64,11 +64,11 @@ export type ExecutionClientGnosis = (typeof executionClientsGnosis)[number];
 export const executionClientsGnosis = Object.freeze([
   "nethermind-xdai.dnp.dappnode.eth",
 ] as const);
-/**export type SignerGnosis = (typeof signerGnosis)[number];
- export const signerGnosis = Object.freeze([
+export type SignerGnosis = (typeof signerGnosis)[number];
+export const signerGnosis = Object.freeze([
   "web3signer-Gnosis.dnp.dappnode.eth",
-] as const); 
-export type MevBoostGnosis = (typeof mevBoostGnosis)[number];
+] as const);
+/**export type MevBoostGnosis = (typeof mevBoostGnosis)[number];
 export const mevBoostGnosis = Object.freeze([
   "mev-boost-gnosis.dnp.dappnode.eth",
 ] as const);*/
