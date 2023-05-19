@@ -28,7 +28,6 @@ export const mevBoostMainnet = Object.freeze([
 ] as const);
 
 // PRATER
-
 export type ConsensusClientPrater = (typeof consensusClientsPrater)[number];
 export const consensusClientsPrater = Object.freeze([
   "prysm-prater.dnp.dappnode.eth",
@@ -56,24 +55,23 @@ export const mevBoostPrater = Object.freeze([
 // GNOSIS
 export type ConsensusClientGnosis = (typeof consensusClientsGnosis)[number];
 export const consensusClientsGnosis = Object.freeze([
-  "gnosis-beacon-chain-prysm.dnp.dappnode.eth",
+  //"gnosis-beacon-chain-prysm.dnp.dappnode.eth", DEPRECATED
   "lighthouse-gnosis.dnp.dappnode.eth",
   "teku-gnosis.dnp.dappnode.eth",
-  "nimbus-gnosis.dnp.dappnode.eth",
   "lodestar-gnosis.dnp.dappnode.eth",
 ] as const);
 export type ExecutionClientGnosis = (typeof executionClientsGnosis)[number];
 export const executionClientsGnosis = Object.freeze([
   "nethermind-xdai.dnp.dappnode.eth",
 ] as const);
-export type SignerGnosis = (typeof signerGnosis)[number];
-export const signerGnosis = Object.freeze([
+/**export type SignerGnosis = (typeof signerGnosis)[number];
+ export const signerGnosis = Object.freeze([
   "web3signer-Gnosis.dnp.dappnode.eth",
-] as const);
+] as const); 
 export type MevBoostGnosis = (typeof mevBoostGnosis)[number];
 export const mevBoostGnosis = Object.freeze([
   "mev-boost-gnosis.dnp.dappnode.eth",
-] as const);
+] as const);*/
 
 // STAKERS
 export const stakerPkgs = Object.freeze([
@@ -87,6 +85,6 @@ export const stakerPkgs = Object.freeze([
   ...mevBoostPrater,
   ...executionClientsGnosis,
   ...consensusClientsGnosis,
-  ...signerGnosis,
-  ...mevBoostGnosis,
+  //...signerGnosis,
+  //...mevBoostGnosis,
 ] as const);
