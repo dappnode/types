@@ -120,10 +120,10 @@ export const getContainerName = ({
 
 
 /**
- * Retrieves the URLs associated with all execution and consensus clients based on dappnode package names.
+ * Retrieves the URLs of the JSON RPC APIs associated with all execution and consensus clients based on dappnode package names.
  * @returns An object containing the URLs for execution and consensus clients on mainnet, Prater, and Gnosis chains.
  * The dappnode package names are retrieved from their corresponding environment variables. Eg: _DAPPNODE_GLOBAL_EXECUTION_CLIENT_MAINNET. 
- * The URLs are returned as strings or undefined if no matching package name is found.
+ * The URLs are returned as strings or undefined if no matching package name is found. Eg: "http://goerli-geth.dappnode:8545"
  */
 export function getUrlFromDnpName(): {
   executionClientMainnetUrl: string | undefined,
