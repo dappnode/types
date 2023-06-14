@@ -34,7 +34,6 @@ export default {
             configFile: "tsconfig.json",
           },
         },
-        exclude: /node_modules/,
       },
     ],
   },
