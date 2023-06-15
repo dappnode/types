@@ -87,17 +87,6 @@ interface DistributedFile {
  * APM version
  */
 
-export interface ApmVersionRaw {
-  version: string;
-  contentUri: string;
-}
-
-export interface ApmRepoVersionReturn {
-  semanticVersion: number[]; // uint16[3]
-  contractAddress: string; // address
-  contentURI: string; // bytes
-}
-
 export interface PackageRequest {
   name: string;
   ver: string;
