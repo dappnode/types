@@ -18,14 +18,10 @@ export const executionClientsMainnet = Object.freeze([
   "erigon.dnp.dappnode.eth",
   "nethermind.public.dappnode.eth",
 ] as const);
-export type SignerMainnet = (typeof signerMainnet)[number];
-export const signerMainnet = Object.freeze([
-  "web3signer.dnp.dappnode.eth",
-] as const);
-export type MevBoostMainnet = (typeof mevBoostMainnet)[number];
-export const mevBoostMainnet = Object.freeze([
-  "mev-boost.dnp.dappnode.eth",
-] as const);
+export type SignerMainnet = "web3signer.dnp.dappnode.eth";
+export const signerMainnet: SignerMainnet = "web3signer.dnp.dappnode.eth";
+export type MevBoostMainnet = "mev-boost.dnp.dappnode.eth";
+export const mevBoostMainnet: MevBoostMainnet = "mev-boost.dnp.dappnode.eth";
 
 // PRATER
 export type ConsensusClientPrater = (typeof consensusClientsPrater)[number];
@@ -43,14 +39,11 @@ export const executionClientsPrater = Object.freeze([
   "goerli-nethermind.dnp.dappnode.eth",
   "goerli-besu.dnp.dappnode.eth",
 ] as const);
-export type SignerPrater = (typeof signerPrater)[number];
-export const signerPrater = Object.freeze([
-  "web3signer-prater.dnp.dappnode.eth",
-] as const);
-export type MevBoostPrater = (typeof mevBoostPrater)[number];
-export const mevBoostPrater = Object.freeze([
-  "mev-boost-goerli.dnp.dappnode.eth",
-] as const);
+export type SignerPrater = "web3signer-prater.dnp.dappnode.eth";
+export const signerPrater: SignerPrater = "web3signer-prater.dnp.dappnode.eth";
+export type MevBoostPrater = "mev-boost-goerli.dnp.dappnode.eth";
+export const mevBoostPrater: MevBoostPrater =
+  "mev-boost-goerli.dnp.dappnode.eth";
 
 // GNOSIS
 export type ConsensusClientGnosis = (typeof consensusClientsGnosis)[number];
@@ -64,14 +57,8 @@ export type ExecutionClientGnosis = (typeof executionClientsGnosis)[number];
 export const executionClientsGnosis = Object.freeze([
   "nethermind-xdai.dnp.dappnode.eth",
 ] as const);
-export type SignerGnosis = (typeof signerGnosis)[number];
-export const signerGnosis = Object.freeze([
-  "web3signer-gnosis.dnp.dappnode.eth",
-] as const);
-/**export type MevBoostGnosis = (typeof mevBoostGnosis)[number];
-export const mevBoostGnosis = Object.freeze([
-  "mev-boost-gnosis.dnp.dappnode.eth",
-] as const);*/
+export type SignerGnosis = "web3signer-gnosis.dnp.dappnode.eth";
+export const signerGnosis: SignerGnosis = "web3signer-gnosis.dnp.dappnode.eth";
 
 // STAKERS
 export const stakerPkgs = Object.freeze([
