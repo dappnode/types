@@ -1,5 +1,10 @@
 // NETWORKS
-export const networks = Object.freeze(["mainnet", "prater", "gnosis"] as const);
+export const networks = Object.freeze([
+  "mainnet",
+  "prater",
+  "gnosis",
+  "lukso",
+] as const);
 export type Network = (typeof networks)[number];
 
 // MAINNET
@@ -60,6 +65,20 @@ export const executionClientsGnosis = Object.freeze([
 export type SignerGnosis = "web3signer-gnosis.dnp.dappnode.eth";
 export const signerGnosis: SignerGnosis = "web3signer-gnosis.dnp.dappnode.eth";
 
+// LUKSO
+export type ConsensusClientLukso = (typeof consensusClientsLukso)[number];
+export const consensusClientsLukso = Object.freeze([
+  "lighthouse-lukso.dnp.dappnode.eth",
+  "prysm-lukso.dnp.dappnode.eth",
+] as const);
+export type ExecutionClientLukso = (typeof executionClientsLukso)[number];
+export const executionClientsLukso = Object.freeze([
+  "lukso-geth.dnp.dappnode.eth",
+  "lukso-erigon.dnp.dappnode.eth",
+] as const);
+export type SignerLukso = "web3signer-lukso.dnp.dappnode.eth";
+export const signerLukso: SignerLukso = "web3signer-lukso.dnp.dappnode.eth";
+
 // STAKERS
 export const stakerPkgs = Object.freeze([
   ...executionClientsMainnet,
@@ -74,4 +93,7 @@ export const stakerPkgs = Object.freeze([
   ...consensusClientsGnosis,
   ...signerGnosis,
   //...mevBoostGnosis,
+  ...executionClientsLukso,
+  ...consensusClientsLukso,
+  ...signerLukso,
 ] as const);
