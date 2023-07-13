@@ -5,6 +5,8 @@ import {
   ExecutionClientPrater,
   ConsensusClientPrater,
   ConsensusClientGnosis,
+  ExecutionClientLukso,
+  ConsensusClientLukso,
 } from "../types/index.js";
 
 /**
@@ -20,26 +22,34 @@ export function getUrlFromDnpName(): {
   consensusClientMainnetUrl: string | undefined;
   consensusClientPraterUrl: string | undefined;
   consensusClientGnosisUrl: string | undefined;
+  consensusClientLuksoUrl: string | undefined;
+  executionClientLuksoUrl: string | undefined;
 } {
   const executionClientMainnet = process.env
     ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_MAINNET as ExecutionClientMainnet;
-  const ConsensusClientMainnet = process.env
+  const consensusClientMainnet = process.env
     ._DAPPNODE_GLOBAL_CONSENSUS_CLIENT_MAINNET as ConsensusClientMainnet;
   const executionClientPrater = process.env
     ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_PRATER as ExecutionClientPrater;
-  const ConsensusClientPrater = process.env
+  const consensusClientPrater = process.env
     ._DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER as ConsensusClientPrater;
   const executionClientGnosis = process.env
     ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_GNOSIS as ExecutionClientGnosis;
-  const ConsensusClientGnosis = process.env
+  const consensusClientGnosis = process.env
     ._DAPPNODE_GLOBAL_CONSENSUS_CLIENT_GNOSIS as ConsensusClientGnosis;
+  const executionClientLukso = process.env
+    ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_LUKSO as ExecutionClientLukso;
+  const consensusClientLukso = process.env
+    ._DAPPNODE_GLOBAL_CONSENSUS_CLIENT_LUKSO as ConsensusClientLukso;
 
   let executionClientMainnetUrl: string | undefined,
     executionClientPraterUrl: string | undefined,
     executionClientGnosisUrl: string | undefined,
+    executionClientLuksoUrl: string | undefined,
     consensusClientMainnetUrl: string | undefined,
     consensusClientPraterUrl: string | undefined,
-    consensusClientGnosisUrl: string | undefined;
+    consensusClientGnosisUrl: string | undefined,
+    consensusClientLuksoUrl: string | undefined;
 
   switch (executionClientMainnet) {
     case "geth.dnp.dappnode.eth":
@@ -55,7 +65,7 @@ export function getUrlFromDnpName(): {
       executionClientMainnetUrl = `http://erigon.dappnode:8545`;
       break;
   }
-  switch (ConsensusClientMainnet) {
+  switch (consensusClientMainnet) {
     case "prysm.dnp.dappnode.eth":
       consensusClientMainnetUrl = `http://beacon-chain.prysm.dappnode:3500`;
       break;
@@ -86,7 +96,7 @@ export function getUrlFromDnpName(): {
       executionClientPraterUrl = `http://goerli-erigon.dappnode:8545`;
       break;
   }
-  switch (ConsensusClientPrater) {
+  switch (consensusClientPrater) {
     case "prysm-prater.dnp.dappnode.eth":
       consensusClientPraterUrl = `http://beacon-chain.prysm-prater.dappnode:3500`;
       break;
@@ -108,7 +118,7 @@ export function getUrlFromDnpName(): {
       executionClientGnosisUrl = `http://nethermind-xdai.dappnode:8545`;
       break;
   }
-  switch (ConsensusClientGnosis) {
+  switch (consensusClientGnosis) {
     case "lighthouse-gnosis.dnp.dappnode.eth":
       consensusClientGnosisUrl = `http://beacon-chain.gnosis-beacon-chain-prysm.dappnode:3500`;
       break;
@@ -120,6 +130,23 @@ export function getUrlFromDnpName(): {
       break;
   }
 
+  switch (executionClientLukso) {
+    case "lukso-geth.dnp.dappnode.eth":
+      executionClientLuksoUrl = `http://lukso-geth.dappnode:8545`;
+      break;
+    case "lukso-erigon.dnp.dappnode.eth":
+      executionClientLuksoUrl = `http://lukso-erigon.dappnode:8545`;
+      break;
+  }
+  switch (consensusClientLukso) {
+    case "prysm-lukso.dnp.dappnode.eth":
+      consensusClientLuksoUrl = `http://beacon-chain.prysm-lukso.dappnode:3500`;
+      break;
+    case "lighthouse-lukso.dnp.dappnode.eth":
+      consensusClientLuksoUrl = `http://beacon-chain.lighthouse-lukso.dappnode:3500`;
+      break;
+  }
+
   return {
     executionClientMainnetUrl,
     executionClientPraterUrl,
@@ -127,5 +154,7 @@ export function getUrlFromDnpName(): {
     consensusClientMainnetUrl,
     consensusClientPraterUrl,
     consensusClientGnosisUrl,
+    consensusClientLuksoUrl,
+    executionClientLuksoUrl,
   };
 }
