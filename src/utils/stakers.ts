@@ -87,10 +87,10 @@ export function getUrlFromDnpName(): {
       executionClientPraterUrl = `http://goerli-geth.dappnode:8545`;
       break;
     case "goerli-besu.dnp.dappnode.eth":
-      executionClientPraterUrl = `http://goerli-besu.dnp.dappnode:8545`;
+      executionClientPraterUrl = `http://goerli-besu.dappnode:8545`;
       break;
     case "goerli-nethermind.dnp.dappnode.eth":
-      executionClientPraterUrl = `http://goerli-nethermind.dnp.dappnode:8545`;
+      executionClientPraterUrl = `http://goerli-nethermind.dappnode:8545`;
       break;
     case "goerli-erigon.dnp.dappnode.eth":
       executionClientPraterUrl = `http://goerli-erigon.dappnode:8545`;
@@ -120,13 +120,13 @@ export function getUrlFromDnpName(): {
   }
   switch (consensusClientGnosis) {
     case "lighthouse-gnosis.dnp.dappnode.eth":
-      consensusClientGnosisUrl = `http://beacon-chain.gnosis-beacon-chain-prysm.dappnode:3500`;
+      consensusClientGnosisUrl = `http://beacon-chain.lighthouse-gnosis.dappnode:3500`;
       break;
     case "teku-gnosis.dnp.dappnode.eth":
       consensusClientGnosisUrl = `http://beacon-chain.teku-gnosis.dappnode:3500`;
       break;
     case "lodestar-gnosis.dnp.dappnode.eth":
-      consensusClientGnosisUrl = `http://beacon-chain.lodestar.dappnode:3500`;
+      consensusClientGnosisUrl = `http://beacon-chain.lodestar-gnosis.dappnode:3500`;
       break;
   }
 
