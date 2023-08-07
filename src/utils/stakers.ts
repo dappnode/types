@@ -134,17 +134,17 @@ export function getUrlFromDnpName(): {
     case "lukso-geth.dnp.dappnode.eth":
       executionClientLuksoUrl = `http://lukso-geth.dappnode:8545`;
       break;
-    case "lukso-erigon.dnp.dappnode.eth":
+    /*case "lukso-erigon.dnp.dappnode.eth":
       executionClientLuksoUrl = `http://lukso-erigon.dappnode:8545`;
-      break;
+      break;*/
   }
   switch (consensusClientLukso) {
     case "prysm-lukso.dnp.dappnode.eth":
       consensusClientLuksoUrl = `http://beacon-chain.prysm-lukso.dappnode:3500`;
       break;
-    case "lighthouse-lukso.dnp.dappnode.eth":
+    /*case "lighthouse-lukso.dnp.dappnode.eth":
       consensusClientLuksoUrl = `http://beacon-chain.lighthouse-lukso.dappnode:3500`;
-      break;
+      break;*/
   }
 
   return {

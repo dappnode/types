@@ -68,13 +68,13 @@ export const signerGnosis: SignerGnosis = "web3signer-gnosis.dnp.dappnode.eth";
 // LUKSO
 export type ConsensusClientLukso = (typeof consensusClientsLukso)[number];
 export const consensusClientsLukso = Object.freeze([
-  "lighthouse-lukso.dnp.dappnode.eth",
+  /*"lighthouse-lukso.dnp.dappnode.eth",*/
   "prysm-lukso.dnp.dappnode.eth",
 ] as const);
 export type ExecutionClientLukso = (typeof executionClientsLukso)[number];
 export const executionClientsLukso = Object.freeze([
   "lukso-geth.dnp.dappnode.eth",
-  "lukso-erigon.dnp.dappnode.eth",
+  /*"lukso-erigon.dnp.dappnode.eth",*/
 ] as const);
 export type SignerLukso = "web3signer-lukso.dnp.dappnode.eth";
 export const signerLukso: SignerLukso = "web3signer-lukso.dnp.dappnode.eth";
