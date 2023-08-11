@@ -142,6 +142,9 @@ export function getUrlFromDnpName(): {
     case "prysm-lukso.dnp.dappnode.eth":
       consensusClientLuksoUrl = `http://beacon-chain.prysm-lukso.dappnode:3500`;
       break;
+    case "teku-lukso.dnp.dappnode.eth":
+      consensusClientLuksoUrl = `http://beacon-chain.teku-lukso.dappnode:3500`;
+      break;
     /*case "lighthouse-lukso.dnp.dappnode.eth":
       consensusClientLuksoUrl = `http://beacon-chain.lighthouse-lukso.dappnode:3500`;
       break;*/
