@@ -70,6 +70,7 @@ export type ConsensusClientLukso = (typeof consensusClientsLukso)[number];
 export const consensusClientsLukso = Object.freeze([
   /*"lighthouse-lukso.dnp.dappnode.eth",*/
   "prysm-lukso.dnp.dappnode.eth",
+  "teku-lukso.dnp.dappnode.eth",
 ] as const);
 export type ExecutionClientLukso = (typeof executionClientsLukso)[number];
 export const executionClientsLukso = Object.freeze([
