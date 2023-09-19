@@ -37,21 +37,17 @@ export const getLegacyImagePath = (name: string, version: string): string =>
 /**
  * Returns a unique domain per container, considering multi-service packages
  * @param dnpName DAppNode package name
- * @param serviceName Service name
+ * @param serviceName Service name (optional)
  * @returns Container domain in the format <service-name>.<dappnode-package-name> if service-name is not empty and different from dappnode-package-name, otherwise returns dappnode-package-name
  */
 export const getContainerDomain = ({
   dnpName,
   serviceName,
 }: {
-  serviceName: string;
+  serviceName?: string;
   dnpName: string;
 }): string => {
-  if (!serviceName || serviceName === dnpName) {
-    return dnpName;
-  } else {
-    return [serviceName, dnpName].join(".");
-  }
+  return (!serviceName || serviceName === dnpName) ? dnpName : `${serviceName}.${dnpName}`;
 };
 
 /**
