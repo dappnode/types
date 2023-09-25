@@ -2,7 +2,7 @@
 
 export const executionClientsOptimism = Object.freeze([
   "op-geth.dnp.dappnode.eth",
-  "op-erigon.dnp.dappnode.eth",
+  /*"op-erigon.dnp.dappnode.eth",*/
 ] as const);
 export type ExecutionClientOptimism = (typeof executionClientsOptimism)[number];
 
