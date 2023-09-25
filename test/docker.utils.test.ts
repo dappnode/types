@@ -47,6 +47,7 @@ describe("Utils > getImageTag", function () {
       serviceName: "test",
       version: "1.0.0",
     });
-    expect(result).to.equal("test:1.0.0");
+    // we no longer skip "serviceName" if it is equal to "dnpName"
+    expect(result).to.equal("test.test:1.0.0");
   });
 });
