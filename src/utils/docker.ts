@@ -41,13 +41,13 @@ export const getLegacyImagePath = (name: string, version: string): string =>
  * @returns Container domain in the format <service-name>.<dappnode-package-name> if service-name is not empty and different from dappnode-package-name, otherwise returns dappnode-package-name
  */
 export const getContainerDomain = ({
-  serviceName,
   dnpName,
+  serviceName,
 }: {
   serviceName?: string;
   dnpName: string;
 }): string => {
-  return serviceName ? `${serviceName}.${dnpName}` : dnpName;
+  return (!serviceName || serviceName === dnpName) ? dnpName : `${serviceName}.${dnpName}`;
 };
 
 /**
