@@ -35,19 +35,19 @@ export const getLegacyImagePath = (name: string, version: string): string =>
   `${name}_${version}.tar.xz`;
 
 /**
- * Returns a unique domain per container, considering multi-service packages
+ * Returns a unique domain per container, considering mono-service and multi-service packages
  * @param dnpName DAppNode package name
- * @param serviceName Service name (optional)
- * @returns Container domain in the format <service-name>.<dappnode-package-name> if service-name is not empty and different from dappnode-package-name, otherwise returns dappnode-package-name
+ * @param serviceName Service name 
+ * @returns Container domain in the format <service-name>.<dappnode-package-name>. Both service and dnp must be provided.
  */
 export const getContainerDomain = ({
   dnpName,
   serviceName,
 }: {
-  serviceName?: string;
+  serviceName: string;
   dnpName: string;
 }): string => {
-  return (!serviceName || serviceName === dnpName) ? dnpName : `${serviceName}.${dnpName}`;
+  return `${serviceName}.${dnpName}`;
 };
 
 /**
