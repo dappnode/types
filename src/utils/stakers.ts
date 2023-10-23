@@ -1,9 +1,11 @@
 import {
   ExecutionClientMainnet,
   ConsensusClientMainnet,
-  ExecutionClientGnosis,
   ExecutionClientPrater,
   ConsensusClientPrater,
+  ExecutionClientHolesky,
+  ConsensusClientHolesky,
+  ExecutionClientGnosis,
   ConsensusClientGnosis,
   ExecutionClientLukso,
   ConsensusClientLukso,
@@ -18,12 +20,14 @@ import {
 export function getUrlFromDnpName(): {
   executionClientMainnetUrl: string | undefined;
   executionClientPraterUrl: string | undefined;
+  executionClientHoleskyUrl: string | undefined;
   executionClientGnosisUrl: string | undefined;
+  executionClientLuksoUrl: string | undefined;
   consensusClientMainnetUrl: string | undefined;
   consensusClientPraterUrl: string | undefined;
+  consensusClientHoleskyUrl: string | undefined;
   consensusClientGnosisUrl: string | undefined;
   consensusClientLuksoUrl: string | undefined;
-  executionClientLuksoUrl: string | undefined;
 } {
   const executionClientMainnet = process.env
     ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_MAINNET as ExecutionClientMainnet;
@@ -33,6 +37,10 @@ export function getUrlFromDnpName(): {
     ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_PRATER as ExecutionClientPrater;
   const consensusClientPrater = process.env
     ._DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER as ConsensusClientPrater;
+  const executionClientHolesky = process.env
+    ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_HOLESKY as ExecutionClientHolesky;
+  const consensusClientHolesky = process.env
+    ._DAPPNODE_GLOBAL_CONSENSUS_CLIENT_HOLESKY as ConsensusClientHolesky;
   const executionClientGnosis = process.env
     ._DAPPNODE_GLOBAL_EXECUTION_CLIENT_GNOSIS as ExecutionClientGnosis;
   const consensusClientGnosis = process.env
@@ -44,10 +52,12 @@ export function getUrlFromDnpName(): {
 
   let executionClientMainnetUrl: string | undefined,
     executionClientPraterUrl: string | undefined,
+    executionClientHoleskyUrl: string | undefined,
     executionClientGnosisUrl: string | undefined,
     executionClientLuksoUrl: string | undefined,
     consensusClientMainnetUrl: string | undefined,
     consensusClientPraterUrl: string | undefined,
+    consensusClientHoleskyUrl: string | undefined,
     consensusClientGnosisUrl: string | undefined,
     consensusClientLuksoUrl: string | undefined;
 
@@ -113,6 +123,37 @@ export function getUrlFromDnpName(): {
       consensusClientPraterUrl = `http://beacon-chain.lodestar-prater.dappnode:3500`;
       break;
   }
+  switch (executionClientHolesky) {
+    case "holesky-geth.dnp.dappnode.eth":
+      executionClientHoleskyUrl = `http://holesky-geth.dappnode:8545`;
+      break;
+    case "holesky-besu.dnp.dappnode.eth":
+      executionClientHoleskyUrl = `http://holesky-besu.dappnode:8545`;
+      break;
+    case "holesky-nethermind.dnp.dappnode.eth":
+      executionClientHoleskyUrl = `http://holesky-nethermind.dappnode:8545`;
+      break;
+    case "holesky-erigon.dnp.dappnode.eth":
+      executionClientHoleskyUrl = `http://holesky-erigon.dappnode:8545`;
+      break;
+  }
+  switch (consensusClientHolesky) {
+    case "prysm-holesky.dnp.dappnode.eth":
+      consensusClientHoleskyUrl = `http://beacon-chain.prysm-holesky.dappnode:3500`;
+      break;
+    case "lighthouse-holesky.dnp.dappnode.eth":
+      consensusClientHoleskyUrl = `http://beacon-chain.lighthouse-holesky.dappnode:3500`;
+      break;
+    case "teku-holesky.dnp.dappnode.eth":
+      consensusClientHoleskyUrl = `http://beacon-chain.teku-holesky.dappnode:3500`;
+      break;
+    case "nimbus-holesky.dnp.dappnode.eth":
+      consensusClientHoleskyUrl = `http://beacon-validator.nimbus-holesky.dappnode:4500`;
+      break;
+    case "lodestar-holesky.dnp.dappnode.eth":
+      consensusClientHoleskyUrl = `http://beacon-chain.lodestar-holesky.dappnode:3500`;
+      break;
+  }
   switch (executionClientGnosis) {
     case "nethermind-xdai.dnp.dappnode.eth":
       executionClientGnosisUrl = `http://nethermind-xdai.dappnode:8545`;
@@ -153,11 +194,13 @@ export function getUrlFromDnpName(): {
   return {
     executionClientMainnetUrl,
     executionClientPraterUrl,
+    executionClientHoleskyUrl,
     executionClientGnosisUrl,
+    executionClientLuksoUrl,
     consensusClientMainnetUrl,
     consensusClientPraterUrl,
+    consensusClientHoleskyUrl,
     consensusClientGnosisUrl,
     consensusClientLuksoUrl,
-    executionClientLuksoUrl,
   };
 }
