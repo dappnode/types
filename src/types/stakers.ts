@@ -4,6 +4,7 @@ export const networks = Object.freeze([
   "prater",
   "gnosis",
   "lukso",
+  "holesky"
 ] as const);
 export type Network = (typeof networks)[number];
 
@@ -50,6 +51,25 @@ export type MevBoostPrater = "mev-boost-goerli.dnp.dappnode.eth";
 export const mevBoostPrater: MevBoostPrater =
   "mev-boost-goerli.dnp.dappnode.eth";
 
+// HOLESKY
+export type ConsensusClientHolesky = (typeof consensusClientsHolesky)[number];
+export const consensusClientsHolesky = Object.freeze([
+  "prysm-holesky.dnp.dappnode.eth",
+  "lighthouse-holesky.dnp.dappnode.eth",
+  "teku-holesky.dnp.dappnode.eth",
+  "nimbus-holesky.dnp.dappnode.eth",
+  "lodestar-holesky.dnp.dappnode.eth",
+] as const);
+export type ExecutionClientHolesky = (typeof executionClientsHolesky)[number];
+export const executionClientsHolesky = Object.freeze([
+  "holesky-geth.dnp.dappnode.eth",
+  "holesky-erigon.dnp.dappnode.eth",
+  "holesky-nethermind.dnp.dappnode.eth",
+  "holesky-besu.dnp.dappnode.eth",
+] as const);
+export type SignerHolesky = "web3signer-holesky.dnp.dappnode.eth";
+export const signerHolesky: SignerHolesky = "web3signer-holesky.dnp.dappnode.eth";
+
 // GNOSIS
 export type ConsensusClientGnosis = (typeof consensusClientsGnosis)[number];
 export const consensusClientsGnosis = Object.freeze([
@@ -90,10 +110,12 @@ export const stakerPkgs = Object.freeze([
   ...consensusClientsPrater,
   signerPrater,
   mevBoostPrater,
+  ...executionClientsHolesky,
+  ...consensusClientsHolesky,
+  signerHolesky,
   ...executionClientsGnosis,
   ...consensusClientsGnosis,
   signerGnosis,
-  //mevBoostGnosis,
   ...executionClientsLukso,
   ...consensusClientsLukso,
   signerLukso,
