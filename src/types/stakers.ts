@@ -100,6 +100,38 @@ export const executionClientsLukso = Object.freeze([
 export type SignerLukso = "web3signer-lukso.dnp.dappnode.eth";
 export const signerLukso: SignerLukso = "web3signer-lukso.dnp.dappnode.eth";
 
+// COMMON
+export type ConsensusClient = (typeof consensusClients)[number];
+export const consensusClients = Object.freeze([
+  ...consensusClientsMainnet,
+  ...consensusClientsPrater,
+  ...consensusClientsGnosis,
+  ...consensusClientsLukso,
+] as const);
+
+export type ExecutionClient = (typeof executionClients)[number];
+export const executionClients = Object.freeze([
+  ...executionClientsMainnet,
+  ...executionClientsPrater,
+  ...executionClientsGnosis,
+  ...executionClientsLukso,
+] as const);
+
+export type Signer = (typeof signers)[number];
+export const signers = Object.freeze([
+  signerMainnet,
+  signerPrater,
+  signerGnosis,
+  signerLukso,
+] as const);
+
+export type MevBoost = (typeof mevBoosts)[number];
+export const mevBoosts = Object.freeze([
+  mevBoostMainnet,
+  mevBoostPrater,
+  //mevBoostGnosis,
+] as const);
+
 // STAKERS
 export const stakerPkgs = Object.freeze([
   ...executionClientsMainnet,

@@ -9,7 +9,12 @@ import {
   ConsensusClientGnosis,
   ExecutionClientLukso,
   ConsensusClientLukso,
+  executionClients,
+  ExecutionClient,
+  consensusClients,
+  ConsensusClient,
 } from "../types/index.js";
+import { isValidDnpName } from "./ens.js";
 
 /**
  * Retrieves the URLs of the JSON RPC APIs associated with all execution and consensus clients based on dappnode package names.
@@ -206,29 +211,32 @@ export function getUrlFromDnpName(): {
 }
 
 export function getJsonRpcApiFromDnpName(dnpName: string): string {
-  const [client, network, , tld] = dnpName.split('.');
 
-  if (tld !== 'eth') throw new Error("Invalid DNP name format.");
+  if (!isValidDnpName(dnpName)) throw new Error("Invalid DNP name format.");
 
-  const base = 'dappnode';
-  const executionPort = '8545';
-  const consensusPort = '3500';
-  const nimbusPort = '4500';
+  let subdomain: string, port: string;
 
-  let subdomain = client;
-  let port = executionPort;
+  const [pkgShortName, repoType] = dnpName.split('.');
 
-  if (['prysm', 'lighthouse', 'teku', 'lodestar'].some(prefix => client.startsWith(prefix))) {
-    subdomain = `beacon-chain.${client}`;
-    port = consensusPort;
-  } else if (client.startsWith('nimbus')) {
-    subdomain = `beacon-validator.${client}`;
-    port = nimbusPort;
+  if (executionClients.includes(dnpName as ExecutionClient)) {
+    subdomain = pkgShortName;
+    port = '8545';
+  } else if (consensusClients.includes(dnpName as ConsensusClient)) {
+
+    if (pkgShortName.startsWith('nimbus')) {
+      subdomain = `beacon-validator.${pkgShortName}`;
+      port = '4500';
+    } else {
+      subdomain = `beacon-chain.${pkgShortName}`;
+      port = '3500';
+    }
+
+  } else {
+    throw new Error(`The DNP ${dnpName} does not correspond to an execution or consensus client.`);
   }
 
-  if (network !== 'dnp') {
-    subdomain = `${subdomain}.${network}`;
-  }
+  const baseDomain = repoType === 'dnp' ? 'dappnode' : 'public.dappnode';
 
-  return `http://${subdomain}.${base}:${port}`;
+  return `http://${subdomain}.${baseDomain}:${port}`;
+
 }
