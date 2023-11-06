@@ -9,7 +9,12 @@ import {
   ConsensusClientGnosis,
   ExecutionClientLukso,
   ConsensusClientLukso,
+  executionClients,
+  ExecutionClient,
+  consensusClients,
+  ConsensusClient,
 } from "../types/index.js";
+import { isValidDnpName } from "./ens.js";
 
 /**
  * Retrieves the URLs of the JSON RPC APIs associated with all execution and consensus clients based on dappnode package names.
@@ -203,4 +208,35 @@ export function getUrlFromDnpName(): {
     consensusClientGnosisUrl,
     consensusClientLuksoUrl,
   };
+}
+
+export function getJsonRpcApiFromDnpName(dnpName: string): string {
+
+  if (!isValidDnpName(dnpName)) throw new Error("Invalid DNP name format.");
+
+  let subdomain: string, port: string;
+
+  const [pkgShortName, repoType] = dnpName.split('.');
+
+  if (executionClients.includes(dnpName as ExecutionClient)) {
+    subdomain = pkgShortName;
+    port = '8545';
+  } else if (consensusClients.includes(dnpName as ConsensusClient)) {
+
+    if (pkgShortName.startsWith('nimbus')) {
+      subdomain = `beacon-validator.${pkgShortName}`;
+      port = '4500';
+    } else {
+      subdomain = `beacon-chain.${pkgShortName}`;
+      port = '3500';
+    }
+
+  } else {
+    throw new Error(`The DNP ${dnpName} does not correspond to an execution or consensus client.`);
+  }
+
+  const baseDomain = repoType === 'dnp' ? 'dappnode' : 'public.dappnode';
+
+  return `http://${subdomain}.${baseDomain}:${port}`;
+
 }
