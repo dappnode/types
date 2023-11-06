@@ -105,6 +105,7 @@ export type ConsensusClient = (typeof consensusClients)[number];
 export const consensusClients = Object.freeze([
   ...consensusClientsMainnet,
   ...consensusClientsPrater,
+  ...consensusClientsHolesky,
   ...consensusClientsGnosis,
   ...consensusClientsLukso,
 ] as const);
@@ -113,6 +114,7 @@ export type ExecutionClient = (typeof executionClients)[number];
 export const executionClients = Object.freeze([
   ...executionClientsMainnet,
   ...executionClientsPrater,
+  ...executionClientsHolesky,
   ...executionClientsGnosis,
   ...executionClientsLukso,
 ] as const);
@@ -121,6 +123,7 @@ export type Signer = (typeof signers)[number];
 export const signers = Object.freeze([
   signerMainnet,
   signerPrater,
+  signerHolesky,
   signerGnosis,
   signerLukso,
 ] as const);
