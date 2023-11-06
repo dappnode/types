@@ -204,3 +204,31 @@ export function getUrlFromDnpName(): {
     consensusClientLuksoUrl,
   };
 }
+
+export function getJsonRpcApiFromDnpName(dnpName: string): string {
+  const [client, network, , tld] = dnpName.split('.');
+
+  if (tld !== 'eth') throw new Error("Invalid DNP name format.");
+
+  const base = 'dappnode';
+  const executionPort = '8545';
+  const consensusPort = '3500';
+  const nimbusPort = '4500';
+
+  let subdomain = client;
+  let port = executionPort;
+
+  if (['prysm', 'lighthouse', 'teku', 'lodestar'].some(prefix => client.startsWith(prefix))) {
+    subdomain = `beacon-chain.${client}`;
+    port = consensusPort;
+  } else if (client.startsWith('nimbus')) {
+    subdomain = `beacon-validator.${client}`;
+    port = nimbusPort;
+  }
+
+  if (network !== 'dnp') {
+    subdomain = `${subdomain}.${network}`;
+  }
+
+  return `http://${subdomain}.${base}:${port}`;
+}
